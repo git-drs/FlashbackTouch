@@ -82,6 +82,14 @@ javac --release 17 \
 # 5. Assemble All-in-One JAR
 echo ">>> Packaging All-in-One flashbacktouch-1.0.0.jar (Dear ImGui + FFmpeg)..."
 rm -rf flashtoch-addon/build/jar/*
+
+# Auto-detect icon.png if present in root
+if [ -f "icon.png" ]; then
+    echo ">>> Staging icon.png to assets/flashbacktouch/icon.png..."
+    mkdir -p flashtoch-addon/src/main/resources/assets/flashbacktouch
+    cp "icon.png" flashtoch-addon/src/main/resources/assets/flashbacktouch/icon.png
+fi
+
 cp -r flashtoch-addon/build/classes/* flashtoch-addon/build/jar/
 cp -r flashtoch-addon/src/main/resources/* flashtoch-addon/build/jar/
 

@@ -11,6 +11,7 @@
     "sources": "https://github.com/git-drs/FlashbackTouch"
   },
   "license": "MIT",
+  "icon": "assets/flashbacktouch/icon.png",
   "environment": "*",
   "entrypoints": {
     "preLaunch": [
