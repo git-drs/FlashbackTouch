@@ -2,6 +2,8 @@
 
 **Flashback Touch** is the Android ARM64 (`aarch64`) native runtime companion mod for the [Flashback](https://github.com/Moulberry/Flashback) Minecraft replay editor mod. It enables Flashback to run smoothly on Android launchers like **PojavLauncher** and **ZalithLauncher** without modifying Flashback's JAR.
 
+[![Support on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/wild_drs)
+
 ---
 
 ## Features
