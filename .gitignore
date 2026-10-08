@@ -1,0 +1,20 @@
+# Build artifacts
+build/
+.gradle/
+flashtoch-addon/build/
+dist/
+
+# Cloned reference & external dependencies
+external/
+flashback-reference/
+imgui-java/
+imgui-android/
+native-build/
+tools/
+scratch/
+
+# IDE & OS
+.idea/
+*.iml
+.DS_Store
+*.log

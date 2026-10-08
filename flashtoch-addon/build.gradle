@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.flashtoch'
+version = '1.0.0'
+
+base {
+    archivesName = 'flashtoch'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://maven.fabricmc.net/'
+    }
+}
+
+dependencies {
+    compileOnly 'net.fabricmc:fabric-loader:0.15.11'
+    compileOnly 'net.fabricmc:sponge-mixin:0.17.4+mixin.0.8.7'
+    compileOnly 'org.lwjgl:lwjgl-openal:3.3.3'
+    compileOnly files('lib/javacpp-1.5.14.jar')
+    compileOnly files('lib/ffmpeg-8.1.2-1.5.14.jar')
+    compileOnly files('lib/flashback-stub.jar')
+    compileOnly files('lib/renderpearl-stub.jar')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(17)
+}
+
+tasks.withType(Jar).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

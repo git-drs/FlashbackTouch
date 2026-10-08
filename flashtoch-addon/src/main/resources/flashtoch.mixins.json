@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.flashtoch.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "MixinAsyncFileDialogs",
+    "MixinExportJob",
+    "MixinCustomImGuiImplB3D",
+    "MixinFrontendRenderPass",
+    "MixinVideoCodec",
+    "MixinAsyncFFmpegVideoWriter"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

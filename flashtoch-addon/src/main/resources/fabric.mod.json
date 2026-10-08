@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "flashbacktouch",
+  "version": "1.0.0",
+  "name": "Flashback Touch",
+  "description": "Android ARM64 native runtime companion mod for Flashback (Dear ImGui ARM64 and FFmpeg mobile support on PojavLauncher and ZalithLauncher)",
+  "authors": [
+    "git-drs"
+  ],
+  "contact": {
+    "sources": "https://github.com/git-drs/FlashbackTouch"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "preLaunch": [
+      "com.flashtoch.FlashTochPreLaunch"
+    ]
+  },
+  "mixins": [
+    "flashtoch.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "flashback": ">=0.40.0"
+  }
+}
