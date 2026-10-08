@@ -49,9 +49,12 @@ else
 fi
 cp dist/libimgui-moulberry90-java64.so dist/libc++_flashtoch.so flashtoch-addon/src/main/resources/natives/
 
-# 3. Build or copy Bionic FFmpeg JAR
+# 3. Build or package Bionic FFmpeg JAR
 if [ ! -f "dist/flashtoch-ffmpeg-1.0.0.jar" ]; then
-    if [ -n "$FFMPEG_DIR" ] && [ -f "$FFMPEG_DIR/build.sh" ]; then
+    if [ -f "scripts/package_ffmpeg.sh" ]; then
+        echo ">>> Packaging Bionic FFmpeg using scripts/package_ffmpeg.sh..."
+        bash scripts/package_ffmpeg.sh
+    elif [ -n "$FFMPEG_DIR" ] && [ -f "$FFMPEG_DIR/build.sh" ]; then
         echo ">>> Packaging Bionic FFmpeg in $FFMPEG_DIR..."
         (cd "$FFMPEG_DIR" && bash build.sh)
         cp "$FFMPEG_DIR/dist/flashtoch-ffmpeg-1.0.0.jar" dist/

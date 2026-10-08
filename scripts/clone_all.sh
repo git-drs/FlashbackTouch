@@ -39,24 +39,17 @@ else
     IMGUI_DIR="$ROOT_DIR/external/imgui-android"
 fi
 
-# 2. FFmpeg Bionic Android Repo
-FFMPEG_DIR=""
-if [ -d "$ROOT_DIR/../flashtoch-ffmpeg-android" ]; then
-    FFMPEG_DIR="$ROOT_DIR/../flashtoch-ffmpeg-android"
-    echo ">>> Found existing sibling directory: $FFMPEG_DIR"
-elif [ -d "$ROOT_DIR/external/flashtoch-ffmpeg-android" ]; then
-    FFMPEG_DIR="$ROOT_DIR/external/flashtoch-ffmpeg-android"
-    echo ">>> Found existing external directory: $FFMPEG_DIR"
+# 2. FFmpeg Bionic Android Packaging
+if [ ! -f "$ROOT_DIR/dist/flashtoch-ffmpeg-1.0.0.jar" ]; then
+    if [ -f "$ROOT_DIR/scripts/package_ffmpeg.sh" ]; then
+        echo ">>> Packaging official Bionic FFmpeg binaries via scripts/package_ffmpeg.sh..."
+        bash "$ROOT_DIR/scripts/package_ffmpeg.sh"
+    fi
 else
-    echo ">>> Cloning flashtoch-ffmpeg-android from GitHub ($GITHUB_USER)..."
-    git clone "https://github.com/$GITHUB_USER/flashtoch-ffmpeg-android.git" "$ROOT_DIR/external/flashtoch-ffmpeg-android" || {
-        echo ">>> [Note] Remote clone failed (not pushed to GitHub yet?)."
-    }
-    FFMPEG_DIR="$ROOT_DIR/external/flashtoch-ffmpeg-android"
+    echo ">>> Found existing Bionic FFmpeg package in dist/."
 fi
 
 echo "=========================================================="
-echo ">>> All companion repositories are ready for building!"
-echo "    ImGui Repo:  $IMGUI_DIR"
-echo "    FFmpeg Repo: $FFMPEG_DIR"
+echo ">>> All components are ready for building!"
+echo "    ImGui Repo: $IMGUI_DIR"
 echo "=========================================================="

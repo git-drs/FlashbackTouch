@@ -86,17 +86,15 @@ FlashbackTouch/
 
 ## Modular Architecture & Repositories
 
-Flashback Touch is divided into three clean, independent open-source repositories:
+Flashback Touch uses a clean, two-repository architecture:
 
 1. **[`FlashbackTouch`](https://github.com/git-drs/FlashbackTouch)** (This Repository):
    - The main Fabric companion mod with pre-launch extraction logic and runtime compatibility Mixins.
+   - Includes `scripts/package_ffmpeg.sh` to package official Bionic FFmpeg binaries.
    - Orchestrates the full build process and produces the final `flashbacktouch-1.0.0.jar`.
 2. **[`imgui-android`](https://github.com/git-drs/imgui-android)**:
    - Standalone C++ ARM64 Android NDK port of Dear ImGui with `imgui.moulberry90` JNI relocation.
    - Compiles `libimgui-moulberry90-java64.so` and `libc++_flashtoch.so`.
-3. **[`flashtoch-ffmpeg-android`](https://github.com/git-drs/flashtoch-ffmpeg-android)**:
-   - Standalone Android Bionic ARM64 FFmpeg & JavaCPP runtime packaging.
-   - Packages `flashtoch-ffmpeg-1.0.0.jar`.
 
 ---
 
@@ -107,17 +105,17 @@ Flashback Touch is divided into three clean, independent open-source repositorie
 - `openjdk-21` or `openjdk-17`
 - `patchelf`
 
-### 2. Auto-Clone All Repositories & Build
-To automatically clone the companion repositories and build the final All-in-One mod:
+### 2. Auto-Clone & Build
+To automatically clone the `imgui-android` companion repository, package Bionic FFmpeg, and build the final mod:
 ```bash
 # Optional: Set your GitHub username/org (default: git-drs)
 export FLASHTOCH_GITHUB_USER="git-drs"
 
-# One-click auto clone & build:
+# One-click auto setup & build:
 bash build_all.sh
 ```
 
-Or clone the companion repositories separately before building:
+Or clone the companion repository manually before building:
 ```bash
 bash scripts/clone_all.sh
 bash build_all.sh
@@ -125,10 +123,13 @@ bash build_all.sh
 
 ---
 
-## License & Attribution
+## Credits, Licenses & Upstream Sources
 
-- **Flashback Touch Mod**: [MIT License](LICENSE)
-- **Dear ImGui**: [MIT License](https://github.com/ocornut/imgui) (Copyright (c) 2014-2026 Omar Cornut)
-- **imgui-java**: [Apache 2.0 License](https://github.com/SpaiR/imgui-java) (Copyright 2019-2026 SpaiR)
-- **FFmpeg**: [LGPL v2.1+](https://ffmpeg.org/) (Copyright FFmpeg developers)
+This project stands on the shoulders of incredible open-source projects:
+
+- **Flashback Touch Mod**: [MIT License](LICENSE) (Maintained by [@git-drs](https://github.com/git-drs)).
 - **Flashback**: Created by Moulberry ([Official Modrinth Page](https://modrinth.com/mod/flashback)). Flashback Touch is an independent third-party companion and does not redistribute Flashback.
+- **Dear ImGui**: Created by Omar Cornut ([ocornut/imgui](https://github.com/ocornut/imgui)) — [MIT License](https://github.com/ocornut/imgui/blob/master/LICENSE.txt).
+- **imgui-java**: JNI bindings created by SpaiR ([SpaiR/imgui-java](https://github.com/SpaiR/imgui-java)) — [Apache License 2.0](https://github.com/SpaiR/imgui-java/blob/master/LICENSE).
+- **FFmpeg**: Licensed under the [GNU LGPL v2.1+](https://ffmpeg.org/legal.html). Upstream source code is available at [ffmpeg.org](https://ffmpeg.org/) and [github.com/FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg).
+- **JavaCPP & FFmpeg Presets**: Created by Samuel Audet & Bytedeco ([bytedeco/javacpp](https://github.com/bytedeco/javacpp) and [bytedeco/javacpp-presets](https://github.com/bytedeco/javacpp-presets)) — [Apache License 2.0](https://github.com/bytedeco/javacpp/blob/master/LICENSE.txt).
