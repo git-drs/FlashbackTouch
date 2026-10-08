@@ -54,6 +54,8 @@ if [ -d "$PKG_DIR/lib/arm64-v8a" ]; then
             cp "$f" "$PKG_DIR/org/bytedeco/ffmpeg/android-arm64/"
         fi
     done
+    # Remove redundant Android APK folder (JavaCPP uses org/bytedeco/ classpath)
+    rm -rf "$PKG_DIR/lib"
 fi
 
 echo ">>> Packaging dist/flashtoch-ffmpeg-1.0.0.jar..."
