@@ -58,4 +58,5 @@ fi
 
 echo ">>> Packaging dist/flashtoch-ffmpeg-1.0.0.jar..."
 jar cf dist/flashtoch-ffmpeg-1.0.0.jar -C "$PKG_DIR" .
+rm -rf "$PKG_DIR"
 echo ">>> Bionic FFmpeg packaging complete: dist/flashtoch-ffmpeg-1.0.0.jar"

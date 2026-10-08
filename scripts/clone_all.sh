@@ -19,7 +19,10 @@ mkdir -p external
 
 # 1. ImGui Native Android Repo
 IMGUI_DIR=""
-if [ -d "$ROOT_DIR/../imgui-android" ]; then
+if [ -d "$ROOT_DIR/imgui-android" ]; then
+    IMGUI_DIR="$ROOT_DIR/imgui-android"
+    echo ">>> Found existing local directory: $IMGUI_DIR"
+elif [ -d "$ROOT_DIR/../imgui-android" ]; then
     IMGUI_DIR="$ROOT_DIR/../imgui-android"
     echo ">>> Found existing sibling directory: $IMGUI_DIR"
 elif [ -d "$ROOT_DIR/../imgui-moulberry90-android" ]; then

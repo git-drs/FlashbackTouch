@@ -13,9 +13,11 @@ if [ -f "scripts/clone_all.sh" ]; then
     bash scripts/clone_all.sh
 fi
 
-# Locate companion repos (sibling or external)
+# Locate companion repos (sibling or local or external)
 IMGUI_DIR=""
-if [ -d "$SCRIPT_DIR/../imgui-android" ]; then
+if [ -d "$SCRIPT_DIR/imgui-android" ]; then
+    IMGUI_DIR="$SCRIPT_DIR/imgui-android"
+elif [ -d "$SCRIPT_DIR/../imgui-android" ]; then
     IMGUI_DIR="$SCRIPT_DIR/../imgui-android"
 elif [ -d "$SCRIPT_DIR/../imgui-moulberry90-android" ]; then
     IMGUI_DIR="$SCRIPT_DIR/../imgui-moulberry90-android"
@@ -35,7 +37,7 @@ fi
 mkdir -p dist flashtoch-addon/src/main/resources/natives
 
 # 2. Build or copy ImGui C++ native binaries
-if [ ! -f "dist/libimgui-moulberry90-java64.so" ] || [ ! -f "dist/libc++_flashtoch.so" ]; then
+if [ "$1" == "--rebuild" ] || [ ! -f "dist/libimgui-moulberry90-java64.so" ] || [ ! -f "dist/libc++_flashtoch.so" ]; then
     if [ -n "$IMGUI_DIR" ] && [ -f "$IMGUI_DIR/build.sh" ]; then
         echo ">>> Building ImGui native binaries in $IMGUI_DIR..."
         (cd "$IMGUI_DIR" && bash build.sh)
@@ -91,6 +93,7 @@ fi
 mkdir -p dist
 jar cf dist/flashbacktouch-1.0.0.jar -C flashtoch-addon/build/jar .
 cp dist/flashbacktouch-1.0.0.jar dist/flashtoch-1.0.0.jar
+rm -rf flashtoch-addon/build
 
 echo "=========================================================="
 echo ">>> BUILD COMPLETE!"

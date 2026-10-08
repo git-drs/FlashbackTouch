@@ -51,7 +51,7 @@ FlashbackTouch/
 ├── README.md                      # Project overview and quick start guide
 ├── LICENSE                        # Licenses (MIT, Apache 2.0, LGPL 2.1+)
 ├── build_all.sh                   # One-click build script for the full addon JAR
-├── build_so.sh                    # C++ compilation script for libimgui-moulberry90-java64.so
+├── build_so.sh                    # C++ compilation delegator for libimgui-moulberry90-java64.so
 │
 ├── dist/                          # Production deliverables
 │   ├── flashbacktouch-1.0.0.jar   # All-in-One Fabric companion mod (Dear ImGui + FFmpeg)
@@ -66,10 +66,14 @@ FlashbackTouch/
 │       ├── java/com/flashtoch/    # PreLaunchEntrypoint implementation
 │       └── resources/             # fabric.mod.json and bundled ARM64 natives
 │
-├── native-build/                  # C++ & JNI binding source tree (150 files)
-│   ├── imgui.cpp, imgui_draw.cpp  # Dear ImGui core
-│   ├── implot, imnodes, imguizmo  # Extension submodules
-│   └── imgui_*.cpp                # JNI wrapper implementations
+├── imgui-android/                 # Standalone Dear ImGui ARM64 Android port (sub-repo)
+│   ├── src/                       # Relocated JNI C++ sources (150 files)
+│   ├── build.sh                   # Native clang++ build script
+│   └── dist/                      # libimgui-moulberry90-java64.so output
+│
+├── scripts/                       # Orchestration scripts
+│   ├── clone_all.sh               # Companion repo cloner
+│   └── package_ffmpeg.sh          # Official Bionic FFmpeg packager
 │
 ├── docs/                          # In-depth technical documentation
 │   ├── android_port_guide.md      # Full step-by-step porting guide & checklist
@@ -77,9 +81,7 @@ FlashbackTouch/
 │   ├── chatlog.md                 # Complete milestone and discovery log
 │   └── diagnostics/               # Symbol dump parity logs
 │
-└── references/                    # Cloned reference codebases
-    ├── flashback-reference/       # Flashback mod source code
-    └── imgui-java/                # Upstream imgui-java v1.90.0 binding source
+└── flashback-reference/           # Upstream Flashback mod source reference
 ```
 
 ---
